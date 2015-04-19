@@ -13,27 +13,38 @@
     <body>
     <center><h1 id="overview" class="page-header">Create a test :</h1></center>
     <div class="container">
-        <div class="panel panel-default">
+        <div class="panel panel-primary" id="info">
+            <div class="panel-heading">Subject</div>
+            <div class="panel-body">
+                <input type="text" class="form-control" placeholder="Class">
+                <input type="text" class="form-control" placeholder="Subject">
+                <input type="text" class="form-control" placeholder="Teacher">
+            </div>
+        </div>
+        <div class="panel panel-default" id="0">
             <div class="panel-heading"><input type="text" class="form-control" placeholder="Question"></div>
-            <div class="panel-body" id="0">
+            <div class="panel-body">
                 <div class="input-group">
                     <span class="input-group-addon">
                         <input type="radio" name="0" value="0" checked>
                     </span>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="0">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon">
                         <input type="radio" name="0" value="1">
                     </span>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="1">
                 </div>
                 <br>
-                <button type="button" onclick="addAnswer()" class="btn btn-default btn-xs">Add an answer</button>
+                <button type="button" onclick="addAnswer(0)" class="btn btn-default btn-xs">Add an answer</button>
             </div>
         </div>
-        <button type="button" onclick="addQuestion()" class="btn btn-default btn-lg">Add a question</button>
+        <button type="button" onclick="addQuestion()" class="btn btn-default btn-lg" id="add">Add a question</button>
+        <button type="button" onclick="saveToDB()" class="btn btn-success btn-lg pull-right">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Confirm
+        </button>
     </div>
 </body>
 </html>
