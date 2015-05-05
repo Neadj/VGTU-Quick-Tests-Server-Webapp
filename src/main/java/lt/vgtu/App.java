@@ -20,7 +20,8 @@ public class App extends Application {
     @Override
     public Set<Class<?>> getClasses() {
     	Set<Class<?>> s = new HashSet<Class<?>>();
-    	s.add(UserResource.class);
+    	s.add(TestResource.class);
+        s.add(TeacherResource.class);
     	s.add(LoggingFilter.class);
     	return s;
     }
