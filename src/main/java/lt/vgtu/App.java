@@ -1,5 +1,7 @@
 package lt.vgtu;
 
+import lt.vgtu.resources.TestResource;
+import lt.vgtu.resources.TeacherResource;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;

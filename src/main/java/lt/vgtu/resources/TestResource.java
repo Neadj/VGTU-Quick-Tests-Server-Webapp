@@ -1,4 +1,4 @@
-package lt.vgtu;
+package lt.vgtu.resources;
 
 import static lt.vgtu.App.db;
 

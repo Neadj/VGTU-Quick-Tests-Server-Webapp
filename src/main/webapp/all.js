@@ -1,66 +1,3 @@
-function getUser(name) {
-    $.getJSON("v1/user/" + name, function (data) {
-        afficheUser(data)
-    });
-}
-
-function afficheUser(data) {
-    console.log(data);
-    $("#reponse").html(data.id + " : " + data.name);
-}
-
-function postUser(name) {
-    $.ajax({
-        type: 'GET',
-        contentType: 'application/json',
-        url: "rest/user/",
-        success: function (data, textStatus, jqXHR) {
-            afficheUser(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('postUser error: ' + textStatus);
-        }
-    });
-}
-var dat;
-function listUsers() {
-    $.getJSON("rest/user/", function (data) {
-        dat = data;
-        var html = "" + data.title + "<br><ul>";
-        var index = 0;
-        for (index = 0; index < data.questions.length; ++index) {
-            html = html + "<li>" + data.questions[index].text + "</li>";
-            html = html + "<form>";
-            for (index2 = 0; index2 < data.questions[index].responses.length; ++index2) {
-                if (index2 == 0)
-                    html = html + "<input type='radio' name='" +
-                            index + "' value='" +
-                            data.questions[index].responses[index2] + "' checked> " +
-                            data.questions[index].responses[index2] + "<br>";
-                else
-                    html = html + "<input type='radio' name='" +
-                            index + "' value='" +
-                            data.questions[index].responses[index2] + "'> " +
-                            data.questions[index].responses[index2] + "<br>";
-            }
-            html = html + "</form>"
-        }
-        html = html + "</ul>";
-        console.log(html);
-        $("#reponse").html(html);
-    });
-}
-
-function afficheListUsers(data) {
-    var html = '<ul>';
-    var index = 0;
-    for (index = 0; index < data.length; ++index) {
-        html = html + "<li>" + data[index].name + "</li>";
-    }
-    html = html + "</ul>";
-    $("#reponse").html(html);
-}
-
 function addAnswer(senderIndex) {
     var nbAnswers = $("#" + senderIndex + " [type='radio']").length;
     var html = "<div class='input-group'><span class='input-group-addon'><input type='radio' name='" + senderIndex + "' value='" + nbAnswers + "'></span><input type='text' class='form-control' name='" + nbAnswers + "'></div><br>";
@@ -103,9 +40,35 @@ function postTest(json) {
     $.ajax({
         type: 'POST',
         contentType: 'application/json',
-        url: "rest/user/",
+        url: "rest/test/",
         dataType: "json",
         data: json,
+        success: function (data, textStatus, jqXHR) {
+            alert("success!");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('postUser error: ' + textStatus);
+        }
+    });
+}
+
+function checkValidity(input) {
+    console.log("triggered")
+    if(input.value == "")
+        input.setCustomValidity("Field required")
+}
+
+function createTeacher() {
+    var teacher = new Object();
+    teacher.name = $("[placeHolder='Name']").val();
+    teacher.login = $("[placeHolder='Login']").val();
+    teacher.pwd = $("[placeHolder='Password']").val();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: "rest/teacher/",
+        dataType: "json",
+        data: JSON.stringify(teacher),
         success: function (data, textStatus, jqXHR) {
             alert("success!");
         },
