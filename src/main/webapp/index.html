@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -22,83 +22,138 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="#">VGTU Quick Tests</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
+                    <ul class="nav navbar-nav" style="cursor: pointer;">                   
+                        <li onclick="showContainer('home')" class="active" id="home"><a>Home</a></li>
+                        <li id="create"><a onclick="showContainer('create')">Create a test</a></li>
+                        <li><a>My tests</a></li>
+                        <li id="about"><a onclick="showContainer('about')">About</a></li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
+                    <form class="navbar-form navbar-right" role="form">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" placeholder="Login">
+                            <input type="password" class="form-control" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default">Sign in</button>
                     </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-    <center><h1 id="overview" class="page-header">Create a test :</h1></center>
-    <div class="container">
-        <div class="panel panel-primary" id="info">
-            <div class="panel-heading">Subject</div>
-            <div class="panel-body">
-                <input type="text" class="form-control" placeholder="Class">
-                <input type="text" class="form-control" placeholder="Subject">
-                <input type="text" class="form-control" placeholder="Teacher">
+        <div class="container" style="padding-top: 90px;" id="home">
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <h1>VGTU Quick Tests</h1>
+                <p>This website allows teachers from VGTU to create tests for their students</p>
+                <p>The students will be able to quickly evaluate their skills in your class thanks to an application on their Android smartphone.</p>
+                <p>
+                    <a class="btn btn-lg btn-primary" role="button">Sign up &raquo;</a>
+                </p>
             </div>
-        </div>
-        <div class="panel panel-default" id="0">
-            <div class="panel-heading"><input type="text" class="form-control" placeholder="Question"></div>
-            <div class="panel-body">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="0" value="0" checked>
-                    </span>
-                    <input type="text" class="form-control" name="0">
+        </div> <!-- Home container -->
+        <div class="container" id="create" hidden>
+            <center><h1 style="padding-top: 20px;" id="overview" class="page-header">Create a test :</h1></center>
+            <div class="container">
+                <div class="panel panel-primary" id="info">
+                    <div class="panel-heading">Subject</div>
+                    <div class="panel-body">
+                        <input type="text" class="form-control" placeholder="Class">
+                        <input type="text" class="form-control" placeholder="Subject">
+                        <input type="text" class="form-control" placeholder="Teacher">
+                    </div>
                 </div>
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="0" value="1">
-                    </span>
-                    <input type="text" class="form-control" name="1">
+                <div class="panel panel-default" id="0">
+                    <div class="panel-heading"><input type="text" class="form-control" placeholder="Question"></div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="0" value="0" checked>
+                            </span>
+                            <input type="text" class="form-control" name="0">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" name="0" value="1">
+                            </span>
+                            <input type="text" class="form-control" name="1">
+                        </div>
+                        <br>
+                        <button type="button" onclick="addAnswer(0)" class="btn btn-default btn-xs">Add an answer</button>
+                    </div>
                 </div>
-                <br>
-                <button type="button" onclick="addAnswer(0)" class="btn btn-default btn-xs">Add an answer</button>
+                <button type="button" onclick="addQuestion()" class="btn btn-default btn-lg" id="add">Add a question</button>
+                <button type="button" onclick="saveToDB()" class="btn btn-success btn-lg pull-right">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Confirm
+                </button>
+            </div></div> <!-- Create test container -->
+        <div class="container" style="padding-top: 90px;" id="about" hidden>
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <h1>About</h1>
+                <p>This is part of a project I made during my internship at Vilnius Gediminas Technical University in Lithuania.</p>
+                <p>The technologies I used for this webapp are :</p>
+                <ul>
+                    <li>Jetty for the REST resources of the server.</li>
+                    <li>MongoDB for the database.</li>
+                    <li>JQuery for the Javascript programming.</li>
+                    <li>Bootstrap, an elegant and easy to use CSS framework.</li>
+                </ul>
+                <p>This project was made by Aymeric Giraudet</p>
             </div>
-        </div>
-        <button type="button" onclick="addQuestion()" class="btn btn-default btn-lg" id="add">Add a question</button>
-        <button type="button" onclick="saveToDB()" class="btn btn-success btn-lg pull-right">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Confirm
-        </button>
+        </div> <!-- About container -->
+        <div class="container" id="signup" style="padding-top: 60px;" hidden>
+             <fieldset>
+                <div id="legend">
+                    <legend class="">Register</legend>
+                </div>
+                <div class="control-group" id="name">
+                    <!-- Username -->
+                    <label class="control-label"  for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" name="name" placeholder="" class="form-control">
+                        <p class="help-block">Please provide here your first name and last name</p>
+                    </div>
+                </div>
+
+                <div class="control-group" id="email">
+                    <!-- E-mail -->
+                    <label class="control-label" for="email">E-mail</label>
+                    <div class="controls">
+                        <input type="text" name="email" placeholder="" class="form-control">
+                        <p class="help-block">Please provide your E-mail</p>
+                    </div>
+                </div>
+
+                <div class="control-group" id="password">
+                    <!-- Password-->
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                        <input type="password" name="password" placeholder="" class="form-control">
+                        <p class="help-block">Password should be at least 4 characters</p>
+                    </div>
+                </div>
+
+                <div class="control-group" id="password_confirm">
+                    <!-- Password -->
+                    <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+                    <div class="controls">
+                        <input type="password" name="password_confirm" placeholder="" class="form-control">
+                        <p class="help-block">Please confirm password</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <button class="btn btn-success" onclick="createTeacher()">Register</button>
+                    </div>
+                </div>
+            </fieldset>
     </div>
+        <p>
 </body>
 </html>

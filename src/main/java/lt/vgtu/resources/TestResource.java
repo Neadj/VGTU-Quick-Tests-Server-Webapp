@@ -16,7 +16,6 @@ public class TestResource {
     @POST
     public String createTest(String json) {
         db.getCollection("tests").insertOne(Document.parse(json));
-        Document d = db.getCollection("tests").find().first();
         return json;
     }
 

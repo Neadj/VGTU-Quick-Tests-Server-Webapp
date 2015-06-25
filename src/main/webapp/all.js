@@ -52,28 +52,59 @@ function postTest(json) {
     });
 }
 
-function checkValidity(input) {
-    console.log("triggered")
-    if(input.value == "")
-        input.setCustomValidity("Field required")
-}
-
 function createTeacher() {
     var teacher = new Object();
-    teacher.name = $("[placeHolder='Name']").val();
-    teacher.login = $("[placeHolder='Login']").val();
-    teacher.pwd = $("[placeHolder='Password']").val();
-    $.ajax({
-        type: 'POST',
-        contentType: 'application/json',
-        url: "rest/teacher/",
-        dataType: "json",
-        data: JSON.stringify(teacher),
-        success: function (data, textStatus, jqXHR) {
-            alert("success!");
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('postUser error: ' + textStatus);
+    teacher.name = $("#signup #name input").val();
+    teacher.login = $("#signup #email input").val();
+    teacher.pwd = $("#signup #password input").val();
+    pwdConfirm = $("#signup #password_confirm input").val();
+    if (teacher.pwd.length < 4) {
+        teacher.pwd = $("#signup #password input").val("");
+        pwdConfirm = $("#signup #password_confirm input").val("");
+        $("#signup #password").addClass("has-error");
+        $("#signup #password .help-block").html("<p class='help-block'>Password has less than 4 characters</p>");
+    } else if (teacher.pwd !== pwdConfirm) {
+        teacher.pwd = $("#signup #password input").val("");
+        pwdConfirm = $("#signup #password_confirm input").val("");
+        $("#signup #password").addClass("has-error");
+        $("#signup #password .help-block").html("<p class='help-block'>Passwords don't match</p>");
+    } else {
+        var response;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: "rest/teacher/",
+            dataType: "text",
+            data: JSON.stringify(teacher),
+            success: function (data, textStatus, jqXHR) {
+                response = data;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Server error");
+            }
+        });
+        if (data === "GERAI GERAI") {
+
+        } else if (data === "ERROR EXISTS") {
+            $("#signup #password").addClass("has-error");
+            $("#signup #password .help-block").html("<p class='help-block'>Passwords don't match</p>");
         }
-    });
+        $("#signup #password").removeClass("has-error");
+        $("#signup #password .help-block").html("<p class='help-block'>Password should be at least 4 characters</p>");
+    }
+}
+
+function login() {
+
+}
+
+function showContainer(id) {
+    $("div#home").hide();
+    $("li#home").removeClass("active");
+    $("div#create").hide();
+    $("li#create").removeClass("active");
+    $("div#about").hide();
+    $("li#about").removeClass("active");
+    $("div#" + id).show();
+    $("li#" + id).addClass("active");
 }

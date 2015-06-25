@@ -36,16 +36,16 @@ public class TeacherResource {
     public String createTeacher(String json) {
         Document teacher = Document.parse(json);
         if(!validDocument(teacher))
-            return "ERROR";
+            return "ERROR NOT VALID";
         try {
             teacher.replace("pwd", AESTools.encrypt(teacher.getString("pwd")));
         } catch (Exception ex) {
             Logger.getLogger(TeacherResource.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(db.getCollection("teachers").find(teacher).first() != null)
-            return "ERROR";
+            return "ERROR EXISTS";
         db.getCollection("teachers").insertOne(teacher);
-        return "OK";
+        return "GERAI GERAI";
     }
     
     private boolean validDocument(Document d) {
